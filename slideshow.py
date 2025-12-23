@@ -43,7 +43,9 @@ class SlideshowApp:
             data = self.slides[self.current_index]
 
             # DISPLAY QUESTION
-            self.question_label.config(text="Is this clickbait? Press 'y' or 'n'" + f"\n\nSlide {self.current_index + 1}/{len(self.slides)}")
+            self.question_label.config(text=
+                                       "Is this clickbait? Press 'y' or 'n'" +
+                                       f"\n\nSlide {self.current_index + 1}/{len(self.slides)}")
 
             try:
                 # LOAD IMAGE
