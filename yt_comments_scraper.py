@@ -1,6 +1,6 @@
 import pandas as pd
 from itertools import islice
-from downloader import *
+from yt_comments_downloader import *
 from time import perf_counter
 
 

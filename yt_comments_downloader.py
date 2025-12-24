@@ -8,7 +8,6 @@ import dateparser
 import requests
 
 YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v={youtube_id}'
-# YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=FozCkl1xj-w'
 YOUTUBE_CONSENT_URL = 'https://consent.youtube.com/save'
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'
