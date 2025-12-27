@@ -67,7 +67,10 @@ def fetch_thumbnails(csv_files, output_dir):
 
 if __name__ == "__main__":
     # Configuration
-    CSV_FILES = ['mtv.csv', 'nmtv.csv']
-    OUTPUT_DIR = 'media'
+    CSV_FILES = [
+        os.path.join('media', 'mtv.csv'),
+        os.path.join('media', 'nmtv.csv')
+    ]
+    OUTPUT_DIR = os.path.join('media', 'thumbnails')
     
     fetch_thumbnails(CSV_FILES, OUTPUT_DIR)

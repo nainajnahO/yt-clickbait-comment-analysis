@@ -19,6 +19,7 @@ env/
 
 # Project specific
 results.csv
+.env
 
 # OS
 .DS_Store

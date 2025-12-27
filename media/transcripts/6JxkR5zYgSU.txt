@@ -1,0 +1,93 @@
+
+Could not retrieve a transcript for the video https://www.youtube.com/watch?v=6JxkR5zYgSU! This is most likely caused by:
+
+No transcripts were found for any of the requested language codes: ['en']
+
+For this video (6JxkR5zYgSU) transcripts are available in the following languages:
+
+(MANUALLY CREATED)
+ - ar ("Arabic")[TRANSLATABLE]
+ - hy ("Armenian")[TRANSLATABLE]
+ - bn ("Bangla")[TRANSLATABLE]
+ - be ("Belarusian")[TRANSLATABLE]
+ - bs ("Bosnian")[TRANSLATABLE]
+ - bg ("Bulgarian")[TRANSLATABLE]
+ - ca ("Catalan")[TRANSLATABLE]
+ - zh-Hant ("Chinese (Traditional)")[TRANSLATABLE]
+ - hr ("Croatian")[TRANSLATABLE]
+ - cs ("Czech")[TRANSLATABLE]
+ - da ("Danish")[TRANSLATABLE]
+ - nl ("Dutch")[TRANSLATABLE]
+ - en-US ("English (United States)")[TRANSLATABLE]
+ - fil ("Filipino")[TRANSLATABLE]
+ - fi ("Finnish")[TRANSLATABLE]
+ - fr ("French")[TRANSLATABLE]
+ - gl ("Galician")[TRANSLATABLE]
+ - de ("German")[TRANSLATABLE]
+ - el ("Greek")[TRANSLATABLE]
+ - gu ("Gujarati")[TRANSLATABLE]
+ - ht ("Haitian Creole")[TRANSLATABLE]
+ - ha ("Hausa")[TRANSLATABLE]
+ - iw ("Hebrew")[TRANSLATABLE]
+ - hi ("Hindi")[TRANSLATABLE]
+ - hu ("Hungarian")[TRANSLATABLE]
+ - is ("Icelandic")[TRANSLATABLE]
+ - ig ("Igbo")[TRANSLATABLE]
+ - id ("Indonesian")[TRANSLATABLE]
+ - ga ("Irish")[TRANSLATABLE]
+ - it ("Italian")[TRANSLATABLE]
+ - ja ("Japanese")[TRANSLATABLE]
+ - kk ("Kazakh")[TRANSLATABLE]
+ - ko ("Korean")[TRANSLATABLE]
+ - la ("Latin")[TRANSLATABLE]
+ - lv ("Latvian")[TRANSLATABLE]
+ - lt ("Lithuanian")[TRANSLATABLE]
+ - mai ("Maithili")[TRANSLATABLE]
+ - mn ("Mongolian")[TRANSLATABLE]
+ - ne ("Nepali")[TRANSLATABLE]
+ - no ("Norwegian")[TRANSLATABLE]
+ - fa ("Persian")[TRANSLATABLE]
+ - pl ("Polish")[TRANSLATABLE]
+ - pt ("Portuguese")[TRANSLATABLE]
+ - pa ("Punjabi")[TRANSLATABLE]
+ - ro ("Romanian")[TRANSLATABLE]
+ - sd ("Sindhi")[TRANSLATABLE]
+ - si ("Sinhala")[TRANSLATABLE]
+ - sl ("Slovenian")[TRANSLATABLE]
+ - es ("Spanish")[TRANSLATABLE]
+ - sv ("Swedish")[TRANSLATABLE]
+ - ta ("Tamil")[TRANSLATABLE]
+ - te ("Telugu")[TRANSLATABLE]
+ - th ("Thai")[TRANSLATABLE]
+ - tr ("Turkish")[TRANSLATABLE]
+ - uk ("Ukrainian")[TRANSLATABLE]
+ - ur ("Urdu")[TRANSLATABLE]
+ - vi ("Vietnamese")[TRANSLATABLE]
+ - xh ("Xhosa")[TRANSLATABLE]
+ - yo ("Yoruba")[TRANSLATABLE]
+ - zu ("Zulu")[TRANSLATABLE]
+
+(GENERATED)
+None
+
+(TRANSLATION LANGUAGES)
+ - ar ("Arabic")
+ - zh-Hant ("Chinese (Traditional)")
+ - nl ("Dutch")
+ - en ("English")
+ - fr ("French")
+ - de ("German")
+ - hi ("Hindi")
+ - id ("Indonesian")
+ - it ("Italian")
+ - ja ("Japanese")
+ - ko ("Korean")
+ - pt ("Portuguese")
+ - ru ("Russian")
+ - es ("Spanish")
+ - th ("Thai")
+ - tr ("Turkish")
+ - uk ("Ukrainian")
+ - vi ("Vietnamese")
+
+If you are sure that the described cause is not responsible for this error and that a transcript should be retrievable, please create an issue at https://github.com/jdepoix/youtube-transcript-api/issues. Please add which version of youtube_transcript_api you are using and provide the information needed to replicate the error. Also make sure that there are no open issues which already describe your problem!
