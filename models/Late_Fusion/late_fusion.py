@@ -185,7 +185,7 @@ if __name__ == "__main__":
     # Get the project root directory
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
     PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
-    DATA_DIR = os.path.join(PROJECT_ROOT, "CreateML", "datasets", "cnn_vllm")
+    DATA_DIR = os.path.join(PROJECT_ROOT, "CreateML", "datasets", "cnn_vllm_clip_max_mean_incong")
 
     train_path = os.path.join(DATA_DIR, "train.parquet")
     val_path = os.path.join(DATA_DIR, "valid.parquet")
@@ -238,6 +238,6 @@ if __name__ == "__main__":
     print(f"AUC-ROC:   {final_metrics['auc_roc']:.4f}")
 
     # Save model
-    model_save_path = os.path.join(SCRIPT_DIR, "cnn_vllm.pth")
+    model_save_path = os.path.join(SCRIPT_DIR, "cnn_vllm_clip_max_mean_incong.pth")
     torch.save(model.state_dict(), model_save_path)
     print(f"\nModel saved to: {model_save_path}")
