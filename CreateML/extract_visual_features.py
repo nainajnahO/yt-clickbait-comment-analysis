@@ -1,7 +1,7 @@
 """
 Visual Feature Extraction Script
 
-This script extracts ResNet50 visual features from all thumbnail images and saves them to a CSV file.
+This script extracts ResNet50 visual features from all thumbnail images and saves them to a parquet file.
 """
 
 import os
@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 # IMPORT v_cnn_extraction
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from v_cnn_extraction import create_feature_extractor, preprocess_image, get_v_cnn
+from v_cnn_extraction import create_feature_extractor, preprocess_image
 
 
 def extract_visual_features_batch(thumbnail_dirs, video_ids, labels, batch_size=32):
@@ -29,7 +29,7 @@ def extract_visual_features_batch(thumbnail_dirs, video_ids, labels, batch_size=
         batch_size (int): Number of images to process in each batch.
 
     Returns:
-        df (pd.DataFrame): DataFrame with columns: video_id, v_cnn_0, v_cnn_1, ..., v_cnn_2047, label
+        df (pd.DataFrame): DataFrame with columns: video_id, v_cnn, label
     """
     # INITIALIZE ResNet50
     weights = ResNet50_Weights.DEFAULT
@@ -48,7 +48,6 @@ def extract_visual_features_batch(thumbnail_dirs, video_ids, labels, batch_size=
 
     all_features = []
     all_video_ids = []
-    all_labels = []
 
     # PROCESS EACH CATEGORY (MTV AND NMTV)
     for label in labels:
@@ -89,19 +88,18 @@ def extract_visual_features_batch(thumbnail_dirs, video_ids, labels, batch_size=
             for j, video_id in enumerate(batch_valid_ids):
                 all_features.append(features_np[j])
                 all_video_ids.append(video_id)
-                all_labels.append(label)
 
     # CREATE DATAFRAME
-    feature_columns = [f"v_cnn_{i}" for i in range(2048)]
-    df = pd.DataFrame(all_features, columns=feature_columns)
-    df.insert(0, 'video_id', all_video_ids)
-    df['label'] = all_labels
+    df = pd.DataFrame({
+        'video_id': all_video_ids,
+        'v_cnn': all_features
+    })
 
     return df
 
 
 def main():
-    """Main function to extract visual features and save to CSV."""
+    """Main function to extract visual features and save to parquet."""
     # DEFINE PATHS
     base_dir = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(os.path.dirname(base_dir), 'data', 'ThumbnailTruthData')
@@ -114,7 +112,7 @@ def main():
 
     output_dir = os.path.join(base_dir, 'features')
     os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, 'visual_features.csv')
+    output_file = os.path.join(output_dir, 'visual_features.parquet')
 
     # LOAD VIDEO ID'S
     mtv_df = pd.read_csv(mtv_csv)
@@ -139,8 +137,8 @@ def main():
     # EXTRACT FEATURES
     df = extract_visual_features_batch(thumbnail_dirs, video_ids, labels, batch_size=32)
 
-    # SAVE CSV
-    df.to_csv(output_file, index=False)
+    # SAVE TO PARQUET
+    df.to_parquet(output_file, engine='pyarrow', compression='snappy', index=False)
 
 
 if __name__ == "__main__":

@@ -23,6 +23,12 @@ def extract_clip_similarity(image_path, transcript, model, processor, device):
     """
     image = Image.open(image_path).convert('RGB')
 
+    # Preprocess Image only once
+    image_input = processor(images=image, return_tensors="pt").to(device)
+    with torch.no_grad():
+        image_emb = model.get_image_features(**image_input)
+        image_emb = image_emb / image_emb.norm(p=2, dim=-1, keepdim=True) # Normalize
+
     # Define window size (CLIP's sweet spot is around 60-70 words)
     words = transcript.split()
     window_size = 60
@@ -33,29 +39,26 @@ def extract_clip_similarity(image_path, transcript, model, processor, device):
 
     max_similarity = -1.0
 
-    # PROCESS CUNKS
-    for chunk in chunks:
-        inputs = processor(
-            text=[chunk],
-            images=image,
-            return_tensors="pt",
-            padding=True,
-            truncation=True
-        ).to(device)
+    # Batch process text chunks
+    text_inputs = processor(
+        text=chunks,
+        return_tensors="pt",
+        padding=True,
+        truncation=True
+    ).to(device)
 
-        with torch.no_grad():
-            outputs = model(**inputs)
-            # COSINE SIMILARITY
-            similarity = torch.nn.functional.cosine_similarity(
-                outputs.image_embeds,
-                outputs.text_embeds
-            ).item()
+    with torch.no_grad():
+        text_emb = model.get_text_features(**text_inputs)
+        text_emb = text_emb / text_emb.norm(p=2, dim=-1, keepdim=True) # Normalize
 
-            # KEEP HIGHEST MATCH FOUND SO FAR
-            if similarity > max_similarity:
-                max_similarity = similarity
+    # Compute similarities
+    # image_emb is (1, D), text_embs is (N, D)
+    similarities = torch.matmul(image_emb, text_emb.T).squeeze(0)
 
-    return max_similarity
+    max_similarity = torch.max(similarities).item()
+    mean_similarity = torch.mean(similarities).item()
+
+    return (max_similarity, mean_similarity)
 
 
 def process_videos(video_data, thumbnail_dir, model, processor, device, label):
@@ -91,8 +94,9 @@ def process_videos(video_data, thumbnail_dir, model, processor, device, label):
         # APPEND RESULT
         results.append({
             'video_id': video_id,
-            'clip_similarity': sclip,
-            'label': label
+            'clip_max_similarity': sclip[0],
+            'clip_mean_similarity': sclip[1],
+            'clickbait_label': label
         })
 
     # RETURN
